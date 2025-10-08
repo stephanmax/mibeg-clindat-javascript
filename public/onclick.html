@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onclick</title>
+</head>
+<body>
+    <button>Click me!</button>
+
+    <script>
+        const btn = document.querySelector("button");
+
+        // btn.onclick = () => { console.log("Hello1"); };
+        // btn.onclick = () => { console.log("Hello2"); };
+
+        btn.addEventListener(
+            "click",
+            () => { console.log("Hello1"); }
+        );
+        btn.addEventListener(
+            "click",
+            () => { console.log("Hello2"); }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <ul>
+        <li><label><input type="checkbox" value="Äpfel"> Äpfel</label></li>
+        <li><label><input type="checkbox" value="Eier"> Eier</label></li>
+        <li><label><input type="checkbox" value="Milch"> Milch</label></li>
+        <li><label><input type="checkbox" value="Klopapier"> Klopapier</label></li>
+        <li><label><input type="checkbox" value="Haferflocken"> Haferflocken</label></li>
+    </ul>
+    <p>Sie wollen also Folgendes einkaufen: <span id="shoppingList"></span></p>
+
+    <script>
+        const element = document.querySelector("ul");
+
+        const generateShoppingList = () => {
+            const allCheckboxes = document.querySelectorAll("input");
+            const selectedGoods = [];
+
+            for (const e of allCheckboxes) {
+                if (e.checked) {
+                    selectedGoods.push(e.value);
+                }
+            }
+
+            const output = document.querySelector("#shoppingList");
+            output.innerText = selectedGoods.length > 0
+                ? selectedGoods.join(", ")
+                : "Nichts einzukaufen! Happy days!";
+            
+            // if (selectedGoods.length > 0) {
+            //     document.querySelector("#shoppingList").innerText = selectedGoods.join(" / ");
+            // }
+            // else {
+            //     document.querySelector("#shoppingList").innerText = "Nichts einzukaufen! Happy days!";
+            // }
+        };
+
+        element.addEventListener(
+            "click",
+            () => {
+                generateShoppingList();
+            }
+        );
+    </script>
+</body>
+
+</html>

@@ -19,7 +19,49 @@
     <p id="feedback"></p>
 
     <script>
-        // Todo
+        const getRandomIntegerBetween = (min, max) => {
+            return min + Math.floor(Math.random() * (max - min));
+        };
+
+        const LOWER = Number(document.querySelector('#lower').innerText);
+        const UPPER = Number(document.querySelector('#upper').innerText);
+
+        const guessButton = document.querySelector('#guessButton');
+        const guessedNumberInput = document.querySelector('#guessedNumberInput');
+        const feedback = document.querySelector('#feedback');
+
+        let randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
+
+        const play = (guessedNumber) => {
+            if (Number.isNaN(guessedNumber)) {
+                feedback.innerText = '❌ Your guess must be a number!';
+                return;
+            }
+            if (guessedNumber < LOWER || guessedNumber > UPPER) {
+                feedback.innerText = `❌ Your guess must be at least ${LOWER} and at most ${UPPER}.`;
+                return;
+            }
+
+            let feedbackMsg; 
+
+            if (guessedNumber === randomNumber) {
+                feedbackMsg = '✅ Your guess is correct!';
+            } else if (guessedNumber < randomNumber) {
+                feedbackMsg = 'Your guess is smaller than my number.';
+            } else {
+                feedbackMsg = 'Your guess is larger than my number.';
+            }
+
+            feedback.innerText = feedbackMsg;
+        };
+
+        guessButton.addEventListener(
+            'click',
+            () => {
+                const guessedNumber = Number(guessedNumberInput.value);
+                play(guessedNumber);
+            }
+        );
     </script>
 </body>
 

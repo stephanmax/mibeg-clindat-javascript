@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EUR 2 USD</title>
+</head>
+<body>
+    <h1>EUR 2 USD</h1>
+    <p><label>
+        Wechselkurs: <b><span id="exchange_rate_output"></span></b> <input id="exchange_rate" type="range" min="0.5" max="2" step="0.001" value="1.168">
+    </label></p>
+    <p><label>
+        EUR: <input id="eur" type="number">
+    </label></p>
+    <p><label>
+        USD: <input id="usd" type="number">
+    </label></p>
+
+    <script>
+        // HTML Elemente
+        const exchangeRateInput = document.querySelector("#exchange_rate");
+        const exchangeRateOutput = document.querySelector("#exchange_rate_output");
+        const eurInput = document.querySelector("#eur");
+        const usdInput = document.querySelector("#usd");
+
+        // Callback-Funktionen
+        const eur2usd = () => {
+            usdInput.value = eurInput.valueAsNumber * exchange_rate;
+        };
+        const usd2eur = () => {
+            eur.value = usdInput.valueAsNumber / exchange_rate;
+        };
+        const updateExchangeRate = () => {
+            exchange_rate = exchangeRateInput.valueAsNumber;
+            exchangeRateOutput.innerText = exchange_rate;
+            eur2usd();
+        };
+
+        updateExchangeRate();
+
+        // Event-Listener
+        exchangeRateInput.addEventListener(
+            "change",
+            updateExchangeRate
+        )
+
+        eurInput.addEventListener(
+            "change",
+            eur2usd
+        );
+
+        usdInput.addEventListener(
+            "change",
+            usd2eur
+        );
+    </script>
+</body>
+</html>

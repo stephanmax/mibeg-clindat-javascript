@@ -20,6 +20,7 @@
         celsius.addEventListener(
             "keyup",
             (event) => {
+                console.log(event);
                 const c = event.target.valueAsNumber;
                 fahrenheit.value = celsiusToFahrenheit(c);
             }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Eight Ball</title>
+</head>
+
+<body>
+    <ol>
+        <li>Ask a yes/no question.</li>
+        <li><button id="answerButton">Click to show answer</button></li>
+    </ol>
+
+    <p id="answerOutput"></p>
+
+    <script>
+        const answerBtn = document.querySelector("#answerButton");
+        const answerOut = document.querySelector("#answerOutput");
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        const possibleAnswers = [
+            "Yes!",
+            "No!",
+            "… maybe …",
+            "YEAH!",
+            "Hell yeah!!!",
+            "Never ever!!!",
+            "It depends.",
+            "Nope"
+        ];
+
+        answerBtn.addEventListener(
+            "click",
+            () => {
+                answerOutput.innerText = possibleAnswers[getRandomInt(possibleAnswers.length)];
+            }
+        );
+    </script>
+</body>
+
+</html>
