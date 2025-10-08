@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App</title>
+</head>
+<body>
+    <h1>My App</h1>
+    <button>Increase counter</button>
+    <p>Counter: <span id="counterOutput">Please press button</span></p>
+
+
+    <script>
+        // Adressierung von HTML-Elementen
+        // const H1 = document.querySelector("h1");
+        const increaseButton = document.querySelector("button");
+        const counterOutput = document.querySelector("#counterOutput");
+        let counter = 0;
+
+        // 1. Funktionsdeklaration
+        const myFunction = () => {
+            // H1.innerText = "My Renamed App";
+            counter += 1;
+            counterOutput.innerText = String(counter);
+        };
+
+        // 2. Funktionsaufruf
+        // myFunction();
+
+
+        // Event-gesteuerte Programmierung
+        // Erinnerung: funktionale Programmierung
+        // 3. Übergeben einer Funktion als Argument
+        increaseButton.addEventListener("click", myFunction);
+    </script>
+</body>
+</html>

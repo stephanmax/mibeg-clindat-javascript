@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Taschenrechner</h1>
+    <label>
+        Summand 1
+        <input id="aInput" type="number">
+    </label>
+    <label>
+        Summand 2
+        <input id="bInput" type="number">
+    </label>
+    <label>
+        Summe
+        <input id="sumOutput" type="number">
+    </label>
+    <button>Berechne!</button>
+
+    <script>
+        // Schreiben Sie eine kleine Web-Applikation, die einen per Input eingegebenen
+        // Wert von Grad Celsius in Grad Fahrenheit konvertiert.
+        const sumOutput = document.querySelector("#sumOutput");
+        const calculateSum = document.querySelector("button");
+
+        const sum = () => {
+            const a = document.querySelector("#aInput").value;
+            const b = document.querySelector("#bInput").value;
+            sumOutput.value = Number(a) + Number(b);
+        };
+
+        calculateSum.addEventListener("click", sum);
+    </script>
+</body>
+</html>

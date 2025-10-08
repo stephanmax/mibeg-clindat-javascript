@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Celsius/Fahrenheit</title>
+</head>
+<body>
+    <h1>Celsius/Fahrenheit Converter</h1>
+    <label>
+        Celsius: <input id="celsius" type="number" size="10">
+    </label>
+    <label>
+        Fahrenheit: <input id="fahrenheit" type="number" size="10">
+    </label>
+
+    <script>
+        const celsiusToFahrenheit = c => c * 1.8 + 32;
+        const fahrenheitToCelsius = f => (f - 32) / 1.8;
+
+        celsius.addEventListener(
+            "keyup",
+            (event) => {
+                const c = event.target.valueAsNumber;
+                fahrenheit.value = celsiusToFahrenheit(c);
+            }
+        );
+
+        fahrenheit.addEventListener(
+            "keyup",
+            (event) => {
+                const f = event.target.valueAsNumber;
+                celsius.value = fahrenheitToCelsius(f);
+            }
+        );
+    </script>
+</body>
+</html>
