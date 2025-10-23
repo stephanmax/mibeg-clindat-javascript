@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Male</h1>
+    <ul id="male"></ul>
+
+    <h1>Female</h1>
+    <ul id="female"></ul>
+
+    <script>
+        const patients = [{
+            name: "Stephan",
+            gender: "male",
+            age: 37
+        }, {
+            name: "Peter",
+            gender: "male",
+            age: 25
+        }, {
+            name: "Sophie",
+            gender: "female",
+            age: 42
+        }, {
+            name: "Tina",
+            gender: "female",
+            age: 57
+        }];
+
+        const femalePatients = patients.filter(p => p.gender === "female");
+        const malePatients = patients.filter(p => p.gender === "male");
+
+        for (const malePatient of malePatients) {
+            male.insertAdjacentHTML(
+                "beforeend",
+                `<li>Patient ${malePatient.name} is ${malePatient.age} years old.</li>`
+            );
+        }
+
+        for (const femalePatient of femalePatients) {
+            female.insertAdjacentHTML(
+                "beforeend",
+                `<li>Patient ${femalePatient.name} is ${femalePatient.age} years old.</li>`
+            );
+        }
+    </script>
+</body>
+</html>

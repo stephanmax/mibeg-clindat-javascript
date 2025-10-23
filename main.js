@@ -4,11 +4,11 @@ const add = (a, b) => {
 };
 
 // Funktionsdeklaration (Anweisung, statement)
-// function add(a, b) {
-//     return a+b;
-// }
+function add(a, b) {
+    return a+b;
+}
 
-console.log(add(5, 10));
+// console.log(add(5, 10));
 
 // Ausdrücke, z.B. 5, "Hallo", 5 < 10, 3 + 7, Funktionen
 // Anweisungen, z.B. console.log("")

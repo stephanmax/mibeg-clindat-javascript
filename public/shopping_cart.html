@@ -9,16 +9,23 @@
 
 <body>
     <ul>
-        <li><label><input type="checkbox" value="Äpfel"> Äpfel</label></li>
-        <li><label><input type="checkbox" value="Eier"> Eier</label></li>
-        <li><label><input type="checkbox" value="Milch"> Milch</label></li>
-        <li><label><input type="checkbox" value="Klopapier"> Klopapier</label></li>
-        <li><label><input type="checkbox" value="Haferflocken"> Haferflocken</label></li>
+        <!-- Dynamisch generiertes HTML -->
     </ul>
-    <p>Sie wollen also Folgendes einkaufen: <span id="shoppingList"></span></p>
+    <p>Sie wollen also Folgendes einkaufen: <mark id="shoppingList"></mark></p>
 
     <script>
-        const element = document.querySelector("ul");
+        const goods = [
+            "Äpfel",
+            "Eier",
+            "Milch",
+            "Klopapier"
+        ];
+        const ul = document.querySelector("ul");
+
+        for (const good of goods) {
+            const html = `<li><label><input type="checkbox" value="${good}"> ${good}</label></li>`;
+            ul.insertAdjacentHTML("beforeend", html);
+        }
 
         const generateShoppingList = () => {
             const allCheckboxes = document.querySelectorAll("input");
@@ -34,20 +41,11 @@
             output.innerText = selectedGoods.length > 0
                 ? selectedGoods.join(", ")
                 : "Nichts einzukaufen! Happy days!";
-            
-            // if (selectedGoods.length > 0) {
-            //     document.querySelector("#shoppingList").innerText = selectedGoods.join(" / ");
-            // }
-            // else {
-            //     document.querySelector("#shoppingList").innerText = "Nichts einzukaufen! Happy days!";
-            // }
         };
 
-        element.addEventListener(
+        ul.addEventListener(
             "click",
-            () => {
-                generateShoppingList();
-            }
+            generateShoppingList
         );
     </script>
 </body>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a id="ourLink" href="https://yesno.wtf">Yes/No</a>
+
+    <script>
+        const ourLink = document.querySelector("#ourLink");
+
+        ourLink.addEventListener(
+            "click",
+            (event) => {
+                event.preventDefault();
+                console.log("Ja oder nein, das ist hier die Frage.");
+            }
+        )
+    </script>
+</body>
+</html>

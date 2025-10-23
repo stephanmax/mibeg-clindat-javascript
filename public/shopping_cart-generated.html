@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <h1>Einkaufsliste</h1>
+    <ul>
+        <!-- Neu: generiertes/dynamisches HTML, durch JavaScript erzeugt -->
+    </ul>
+    <!-- NEU: Neues HTML-Element <mark> -->
+    <p>Sie wollen also Folgendes einkaufen: <mark id="shoppingList">Nichts! Feierabend!</mark></p>
+
+    <script>
+        const ul = document.querySelector("ul");
+        const output = document.querySelector("#shoppingList");
+
+        // NEU: Waren als Array
+        const goods = ["Äpfel", "Eier", "Milch", "Klopapier", "Haferflocken"];
+
+        // NEU: Dynamisches HTML generiert
+        for (const g of goods) {
+            const html = `
+                <li>
+                    <label>
+                        <input type="checkbox" value="${g}"> ${g}
+                    </label>
+                </li>
+            `;
+            ul.insertAdjacentHTML('beforeend', html);
+        }
+
+        const generateShoppingList = () => {
+            const allCheckboxes = document.querySelectorAll("input");
+
+            // NEU: funktional und deklarativ programmiert
+            const selectedGoods = Array.from(allCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+            
+            output.innerText = selectedGoods.length > 0
+                ? selectedGoods.join(", ")
+                : "Nichts! Feierabend!";
+        };
+
+        ul.addEventListener(
+            "click",
+            () => {
+                generateShoppingList();
+            }
+        );
+    </script>
+</body>
+
+</html>

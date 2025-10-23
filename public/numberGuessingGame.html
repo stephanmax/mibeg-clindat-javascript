@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Guessing Game</title>
+    <style>
+        #restartButton {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,24 +20,43 @@
         <span id="upper">99</span>.
     </p>
     <input type="number" id="guessedNumberInput">
-    <button id="guessButton">Guess</button>
     <p id="feedback"></p>
+    <button id="restartButton">Start New Game</button>
 
     <script>
         const getRandomIntegerBetween = (min, max) => {
             return min + Math.floor(Math.random() * (max - min));
         };
 
+        let randomNumber;
+        let tries;
+        const maxTries = 10;
+
         const LOWER = Number(document.querySelector('#lower').innerText);
         const UPPER = Number(document.querySelector('#upper').innerText);
 
-        const guessButton = document.querySelector('#guessButton');
         const guessedNumberInput = document.querySelector('#guessedNumberInput');
         const feedback = document.querySelector('#feedback');
+        const restartButton = document.querySelector('#restartButton');
 
-        let randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
+        const startNewGame = () => {
+            tries = 0;
+            randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
+            guessedNumberInput.disabled = false;
+            feedback.innerText = "";
+            guessedNumberInput.value = "";
+            restartButton.style.display = "none";
+        };
+
+        const endGame = () => {
+            guessedNumberInput.disabled = true;
+            restartButton.style.display = "block";
+        };
 
         const play = (guessedNumber) => {
+            tries++;
+            guessedNumberInput.value = "";
+
             if (Number.isNaN(guessedNumber)) {
                 feedback.innerText = '❌ Your guess must be a number!';
                 return;
@@ -42,26 +66,48 @@
                 return;
             }
 
-            let feedbackMsg; 
+            // Sind wir hier angekommen, darf der Spieler spielen
+            let feedbackMsg;
+            const feedbackTries = ` That was try number ${tries} of ${maxTries}.`;
 
             if (guessedNumber === randomNumber) {
-                feedbackMsg = '✅ Your guess is correct!';
+                feedbackMsg = `✅ Your guess is correct!` + feedbackTries;
+                endGame();
             } else if (guessedNumber < randomNumber) {
-                feedbackMsg = 'Your guess is smaller than my number.';
+                feedbackMsg = `Your guess ${guessedNumber} is smaller than my number.` + feedbackTries;
             } else {
-                feedbackMsg = 'Your guess is larger than my number.';
+                feedbackMsg = `Your guess ${guessedNumber} is larger than my number.` + feedbackTries;
+            }
+
+            if (tries === maxTries) {
+                feedbackMsg += ` ❌ Maximum number of tries reached. GAME OVER! My number was ${randomNumber}.`;
+                endGame();
             }
 
             feedback.innerText = feedbackMsg;
         };
 
-        guessButton.addEventListener(
-            'click',
+        guessedNumberInput.addEventListener(
+            "change",
             () => {
                 const guessedNumber = Number(guessedNumberInput.value);
                 play(guessedNumber);
             }
         );
+
+        restartButton.addEventListener("click", startNewGame);
+
+        startNewGame();
+
+        /*
+        Neues Spiel initiieren
+
+        - Eingabefeld und -button enablen ✅
+        - tries zurück auf 0 ✅
+        - Neue Zufallszahl ✅
+        - Feedbackfeld leeren ✅
+        - Inputfeld leeren
+        */
     </script>
 </body>
 

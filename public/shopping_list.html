@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste</title>
+
+    <style>
+        body {
+            font-family: system-ui, sans;
+        }
+        ul {
+            list-style: none;
+            padding-inline-start: 1em;
+        }
+        li {
+            font-weight: 500;
+        }
+        li:has(input[type="checkbox"]:checked) {
+            color: #999;
+            font-weight: 100;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Einkaufsliste</h1>
+    <p>Was wollen Sie einkaufen?</p>
+    <input id="whatToBuy" type="text">
+    <ul>
+        <!-- Dynamisch generiertes HTML -->
+    </ul>
+
+    <script>
+        const inputGrocery = document.querySelector("#whatToBuy");
+        const ul = document.querySelector("ul");
+
+        const addToShoppingList = () => {
+            const grocery = inputGrocery.value;
+
+            const liElement = document.createElement("li");
+            const labelElement = document.createElement("label");
+
+            liElement.appendChild(labelElement);
+
+            const inputElement = document.createElement("input");
+            const text = document.createTextNode(grocery);
+
+            inputElement.value = grocery;
+            inputElement.type = "checkbox";
+            labelElement.appendChild(inputElement);
+            labelElement.appendChild(text);
+
+            ul.appendChild(liElement);
+
+            inputGrocery.value = "";
+
+            fs.writeFileSync("shopping_list.json", "Hello");
+        };
+
+        // EVENTS!!!
+        inputGrocery.addEventListener("change", addToShoppingList);
+    </script>
+</body>
+
+</html>

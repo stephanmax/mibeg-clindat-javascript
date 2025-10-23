@@ -13,14 +13,12 @@
         Fahrenheit: <input id="fahrenheit" type="number" size="10">
     </label>
 
-    <script>
-        const celsiusToFahrenheit = c => c * 1.8 + 32;
-        const fahrenheitToCelsius = f => (f - 32) / 1.8;
+    <script type="module">
+        import { celsiusToFahrenheit, fahrenheitToCelsius } from "./lib/temperatures.js";
 
         celsius.addEventListener(
             "keyup",
             (event) => {
-                console.log(event);
                 const c = event.target.valueAsNumber;
                 fahrenheit.value = celsiusToFahrenheit(c);
             }
