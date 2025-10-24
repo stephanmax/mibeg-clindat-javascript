@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <!-- View: User Interface/Benutzeroberfläche meines Programmes -->
     <h1>Number Guessing Game</h1>
     <p>
         I’m thinking of a number between
@@ -28,6 +29,8 @@
             return min + Math.floor(Math.random() * (max - min));
         };
 
+        // Variablen, Datenstrukturen
+        // Model = Datengrundlage meines Programmes
         let randomNumber;
         let tries;
         const maxTries = 10;
@@ -39,6 +42,7 @@
         const feedback = document.querySelector('#feedback');
         const restartButton = document.querySelector('#restartButton');
 
+        // Controller: Bindeglied zwischen Model (Daten) und View (Benutzeroberfläche)
         const startNewGame = () => {
             tries = 0;
             randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
@@ -47,6 +51,16 @@
             guessedNumberInput.value = "";
             restartButton.style.display = "none";
         };
+
+        /*
+        Neues Spiel initiieren
+
+        - Eingabefeld und -button enablen ✅
+        - tries zurück auf 0 ✅
+        - Neue Zufallszahl ✅
+        - Feedbackfeld leeren ✅
+        - Inputfeld leeren ✅
+        */
 
         const endGame = () => {
             guessedNumberInput.disabled = true;
@@ -65,6 +79,9 @@
                 feedback.innerText = `❌ Your guess must be at least ${LOWER} and at most ${UPPER}.`;
                 return;
             }
+
+            // DRY = Don’t repeat yourself!
+            // KISS = Keep it simple, silly!
 
             // Sind wir hier angekommen, darf der Spieler spielen
             let feedbackMsg;
@@ -99,15 +116,7 @@
 
         startNewGame();
 
-        /*
-        Neues Spiel initiieren
-
-        - Eingabefeld und -button enablen ✅
-        - tries zurück auf 0 ✅
-        - Neue Zufallszahl ✅
-        - Feedbackfeld leeren ✅
-        - Inputfeld leeren
-        */
+        // Model / View / Controller: MVC
     </script>
 </body>
 

@@ -5,6 +5,7 @@
   "author": "Stephan Max <work@stephanmax.com>",
   "main": "server.js",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "nodemon server.js"
   },

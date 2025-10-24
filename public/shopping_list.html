@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    <!-- View, Part 1 -->
     <h1>Einkaufsliste</h1>
     <p>Was wollen Sie einkaufen?</p>
     <input id="whatToBuy" type="text">
@@ -34,33 +35,40 @@
     </ul>
 
     <script>
+        // const htmlP = document.querySelector("p");
+        
+        // const htmlH1 = document.createElement("h1");
+        // htmlH1.innerText = "Einkaufsliste";
+
+        // document.querySelector("body").insertBefore(htmlH1, htmlP);
+
+        // Model
         const inputGrocery = document.querySelector("#whatToBuy");
         const ul = document.querySelector("ul");
 
+        // Controller
         const addToShoppingList = () => {
-            const grocery = inputGrocery.value;
+            const grocery = inputGrocery.value; // z.B. "Apfel"
 
             const liElement = document.createElement("li");
             const labelElement = document.createElement("label");
 
             liElement.appendChild(labelElement);
 
-            const inputElement = document.createElement("input");
+            const checkboxElement = document.createElement("input");
             const text = document.createTextNode(grocery);
 
-            inputElement.value = grocery;
-            inputElement.type = "checkbox";
-            labelElement.appendChild(inputElement);
+            checkboxElement.value = grocery;
+            checkboxElement.type = "checkbox";
+            labelElement.appendChild(checkboxElement);
             labelElement.appendChild(text);
 
             ul.appendChild(liElement);
 
             inputGrocery.value = "";
-
-            fs.writeFileSync("shopping_list.json", "Hello");
         };
 
-        // EVENTS!!!
+        // View, Part 2
         inputGrocery.addEventListener("change", addToShoppingList);
     </script>
 </body>
